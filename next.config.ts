@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     loaderFile: "./loader.js",
   },
   crossOrigin: "anonymous",
+  distDir: "build",
 };
 
 export default nextConfig;
