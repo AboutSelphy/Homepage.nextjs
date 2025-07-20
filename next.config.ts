@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     loader: "custom",
     loaderFile: "./loader.js",
   },
+  crossOrigin: "anonymous",
 };
 
 export default nextConfig;
