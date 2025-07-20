@@ -4,7 +4,7 @@ export default function myImageLoader({ src, width, quality }) {
     const isLocal = !src.startsWith('http');
     const query = new URLSearchParams();
 
-    const imageOptimizationApi = 'transformation-zscok8cokwgc0c0c8kswwg0o.tenkaistudio.com';
+    const imageOptimizationApi = 'tenkaistudio.com';
     // Your NextJS application URL
     const baseUrl = 'tenkaistudio.com';
 
