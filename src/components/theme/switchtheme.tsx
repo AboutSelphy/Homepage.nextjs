@@ -1,44 +1,44 @@
-'use client'
-import { Moon,Sun } from 'lucide-react'
-import { useEffect, useState } from 'react'
+'use client';
+
+import { Moon, Sun } from 'lucide-react'
+import { AnimatePresence, motion } from "motion/react";
+import { useTheme } from '@/app/themeprovider';
 
 export default function Switchtheme() {
-    
-    const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const { theme, toggleTheme } = useTheme();
 
-  // On first load: sync with localStorage or system
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
-    if (savedTheme) {
-      applyTheme(savedTheme)
-      setTheme(savedTheme)
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      const systemTheme = prefersDark ? 'dark' : 'light'
-      applyTheme(systemTheme)
-      setTheme(systemTheme)
-    }
-  }, [])
+  if (!theme) return null; // Don't render until mounted
 
-  const applyTheme = (newTheme: 'light' | 'dark') => {
-    document.documentElement.setAttribute('data-theme', newTheme)
-
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-
-    localStorage.setItem('theme', newTheme)
-  }
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
-    setTheme(newTheme)
-    applyTheme(newTheme)
-  }
-
-  return(
-    <button onClick={toggleTheme} className='' aria-label='Switch to ${theme}'> {theme === 'light' ? <Moon /> : <Sun /> } </button>
+  return (
+    <motion.button
+      onClick={toggleTheme}
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      className="flex items-center justify-center p-2 rounded-sm shadow-md transition-colors duration-200 border-border border-solid border-1"
+      whileTap={{ scale: 0.9 }}
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        {theme === 'light' ? (
+          <motion.div
+            key="moon"
+            initial={{ rotate: 90, opacity: 0, scale: 0.8 }}
+            animate={{ rotate: 0, opacity: 1, scale: 1 }}
+            exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Moon />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="sun"
+            initial={{ rotate: 90, opacity: 0, scale: 0.8 }}
+            animate={{ rotate: 0, opacity: 1, scale: 1 }}
+            exit={{ rotate: -90, opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Sun />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.button>
   );
-};
+}
