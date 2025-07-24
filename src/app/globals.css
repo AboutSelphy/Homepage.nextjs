@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
+  --color-dark-background: oklch(15% 0.02 270);
+  --color-background: oklch(20% 0.02 270);
+  --color-light-background: oklch(30% 0.03 270);
+
+  --color-text: oklch(92% 0 0);
+  --color-text-muted: oklch(70% 0.01 270);
+
+  --color-border: oklch(45% 0 0);
+  --color-border-highlight: oklch(65% 0.1 250);
+  --color-border-muted: oklch(30% 0.01 270);
+
+  --color-primary: oklch(0.882 0.2008 159.6);
+  --color-secondary: oklch(0.7996 0.1463 220.71);
+
+  --color-success: oklch(77% 0.25 140);
+  --color-info: oklch(77% 0.25 250);
+  --color-danger: oklch(63% 0.25 30);
+  --color-warning: oklch(77% 0.25 80);
+
+  --color-hover: oklch(40% 0.02 270 / 0.15); /* subtle hover bg */
+  --color-disabled: oklch(45% 0 0 / 0.3);   /* disabled elements */
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --Sshadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --focus-ring: oklch(70% 0.2 250 / 0.6);
+  --transition-fast: 150ms ease-in-out;
+  --transition-slow: 300ms ease;
+
+  --overlay: oklch(0% 0 0 / 0.5); /* modal/drawer background */
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme="light"] {
+  --color-dark-background: oklch(98% 0 0);
+  --color-background: oklch(95% 0 0);
+  --color-light-background: oklch(88% 0 0);
+
+  --color-text: oklch(15% 0 0);
+  --color-text-muted: oklch(40% 0 0);
+
+  --color-hover: oklch(0% 0 0 / 0.04);
+  --color-disabled: oklch(0% 0 0 / 0.1);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --overlay: oklch(0% 0 0 / 0.4);
+}
+
+[data-theme="dark"] {
+  --color-dark-background: oklch(15% 0.02 270);
+  --color-background: oklch(25% 0.02 270);
+  --color-light-background: oklch(35% 0.03 270);
+
+  --color-text: oklch(92% 0 0);
+  --color-text-muted: oklch(70% 0.01 270);
+
+  --color-hover: oklch(100% 0 0 / 0.06);
+  --color-disabled: oklch(100% 0 0 / 0.1);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+
+  --overlay: oklch(0% 0 0 / 0.6);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: lexend;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: gabarito;
 }
